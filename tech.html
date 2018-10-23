@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+  table.main{
+    background-image: url("iphone.png");
+    background-repeat:no-repeat;
+    background-size: 300px 600px;
+    padding-left: 15px;
+    }
+  table, th, td {
+     border: 0px solid black;
+  }
+
+  </style>
+
+<!-- OnLoad Script -->
+<script>
+	var doc1ServentArray = new Array();
+	var doc2ServentArray = new Array();
+	var swapped = false;
+	function onLoad() {
+    	var servent = {serventName:"Servent1", serventid:"1"};
+    	doc1ServentArray[doc1ServentArray.length] = servent;
+    	var servent = {serventName:"Servent2", serventid:"2"};
+    	doc1ServentArray[doc1ServentArray.length] = servent;
+
+    	var servent = {serventName:"Servent3", serventid:"3"};
+    	doc2ServentArray[doc2ServentArray.length] = servent;
+    	//var servent = {serventName:"Servent4", serventid:"4"};
+    	//doc2ServentArray[doc2ServentArray.length] = servent;
+
+
+
+    	for(i=0;i<doc1ServentArray.length;i++) {
+    		servent = doc1ServentArray[i];
+    		var displayAreaId= "chatDisplay1";
+        	var divElemt = document.getElementById("servantList1");
+    		var button = document.createElement("button");
+     		button.setAttribute("type", "button");
+     		button.setAttribute("value", servent.serventName);
+     		button.setAttribute("onclick", "showSkill("+servent.serventid+",'chatDisplay1')");
+     		button.innerHTML = servent.serventName;
+    		divElemt.appendChild(button);
+    	}
+
+    	for(i=0;i<doc2ServentArray.length;i++) {
+    		servent = doc2ServentArray[i];
+    		var displayAreaId= "chatDisplay2";
+        	var divElemt = document.getElementById("servantList2");
+    		var button = document.createElement("button");
+     		button.setAttribute("type", "button");
+     		button.setAttribute("value", servent.serventName);
+     		button.setAttribute("onclick", "showSkill("+servent.serventid+",'chatDisplay2')");
+     		button.innerHTML = servent.serventName;
+    		divElemt.appendChild(button);
+    	}
+
+		var doc1patientName = document.getElementById("doc1patientName");
+		var doc2patientName = document.getElementById("doc2patientName");
+		doc1patientName.innerHTML = "Patient Name: Gary";
+		doc2patientName.innerHTML = "Patient Name: Alan";
+
+	}
+
+	function swapDoctors() {
+		if (swapped == false) {
+			swapped = true;
+		} else {
+			swapped = false;
+		}
+		var doc1patientName = document.getElementById("doc1patientName");
+		var doc2patientName = document.getElementById("doc2patientName");
+		var temp = doc1patientName.innerHTML;
+		doc1patientName.innerHTML = doc2patientName.innerHTML;
+		doc2patientName.innerHTML =temp;
+
+		var temp = doc1ServentArray;
+		doc1ServentArray = doc2ServentArray;
+		doc2ServentArray = temp;
+
+		var divElemt = document.getElementById("servantList1");
+		divElemt.innerHTML="";
+		var divElemt = document.getElementById("servantList2");
+		divElemt.innerHTML="";
+
+		for(i=0;i<doc1ServentArray.length;i++) {
+			var displayAreaId= "chatDisplay1";
+			servent = doc1ServentArray[i];
+        	var divElemt = document.getElementById("servantList1");
+    		var button = document.createElement("button");
+     		button.setAttribute("type", "button");
+     		button.setAttribute("value", servent.serventName);
+     		button.setAttribute("onclick", "showSkill("+servent.serventid+"'chatDisplay1')");
+     		button.innerHTML = servent.serventName;
+    		divElemt.appendChild(button);
+    	}
+
+    	for(i=0;i<doc2ServentArray.length;i++) {
+    		var displayAreaId= "chatDisplay2";
+    		servent = doc2ServentArray[i];
+        	var divElemt = document.getElementById("servantList2");
+    		var button = document.createElement("button");
+     		button.setAttribute("type", "button");
+     		button.setAttribute("value", servent.serventName);
+     		button.setAttribute("onclick", "showSkill("+servent.serventid+"'chatDisplay2')");
+     		button.innerHTML = servent.serventName;
+    		divElemt.appendChild(button);
+    	}
+
+    	var doc1postemp = document.getElementById("doc1pos1");
+    	var teminnerhtml = doc1postemp.innerHTML;
+    	doc1postemp.innerHTML = document.getElementById("doc1pos2").innerHTML;
+    	document.getElementById("doc1pos2").innerHTML = teminnerhtml;
+
+    	var doc1postemp = document.getElementById("doc2pos1");
+    	var teminnerhtml = doc1postemp.innerHTML;
+    	doc1postemp.innerHTML = document.getElementById("doc2pos2").innerHTML;
+    	document.getElementById("doc2pos2").innerHTML = teminnerhtml;
+
+
+
+
+	}
+	
+	function addServent(roomNo) {
+		if(roomNo == 2) {
+			var serventaddspace = document.getElementById("addserventspace2");		
+			serventaddspace.innerHTML = "Servent 4";	
+			
+			if(swapped == true) {				
+				var servent = {serventName:"Servent4", serventid:"4"};
+		    	doc2ServentArray[doc2ServentArray.length] = servent;			
+				var displayAreaId= "chatDisplay1";
+	    		servent = doc2ServentArray[i];
+	        	var divElemt = document.getElementById("servantList1");
+	    		var button = document.createElement("button");
+	     		button.setAttribute("type", "button");
+	     		button.setAttribute("value", servent.serventName);
+	     		button.setAttribute("onclick", "showSkill("+servent.serventid+"'chatDisplay2')");
+	     		button.innerHTML = servent.serventName;
+	    		divElemt.appendChild(button);
+				
+				
+			} else {
+				var servent = {serventName:"Servent4", serventid:"4"};
+		    	doc2ServentArray[doc2ServentArray.length] = servent;			
+				var displayAreaId= "chatDisplay2";
+	    		servent = doc2ServentArray[i];
+	        	var divElemt = document.getElementById("servantList2");
+	    		var button = document.createElement("button");
+	     		button.setAttribute("type", "button");
+	     		button.setAttribute("value", servent.serventName);
+	     		button.setAttribute("onclick", "showSkill("+servent.serventid+"'chatDisplay2')");
+	     		button.innerHTML = servent.serventName;
+	    		divElemt.appendChild(button);				
+			}
+			
+			
+    		
+		} if (roomNo ==1) {
+			
+		}
+	}
+	
+</script>
+  
+<script type="text/javascript">
+var exist =["false", "false", "false", "false", "false"];
+function showSkill(skillValue,displayName){
+	document.getElementById("console").innerHTML = displayName;
+  var table=document.getElementById(displayName+"");
+  table.style.width="267px";
+  var innerTable=document.createElement("table");
+  innerTable.style.width="261px";
+  innerTable.style.border="1px solid black";
+  var tr=document.createElement("tr");
+
+  var td=document.createElement("td");
+//    td.style.border="1px solid black";
+  var btn=document.createElement("button");
+  btn.type="button";
+  var btn1=document.createElement("button");
+  btn1.type="button";
+  var btn2=document.createElement("button");
+  btn2.type="button";
+
+  if(skillValue==1 && exist[0]=="false"){
+    var txt =document.createTextNode("Heart Rate");
+    innerTable.id='Vitals';
+
+    btn.appendChild(txt);
+    btn.style.padding = "0px";
+    btn.id="HrtRt";
+    btn.setAttribute('onclick', "buttonFunction('Vitals',this.id, 'W','G');");
+
+    txt=document.createTextNode("Blood pressure");
+    btn1.appendChild(txt);
+    btn1.style.padding = "0px";
+    btn1.style.margin = "0px 5px";
+    btn1.id="BloodPressure";
+    btn1.setAttribute('onclick', "buttonFunction('Vitals',this.id,'W','G');");
+
+
+    txt=document.createTextNode("Temperature");
+    btn2.appendChild(txt);
+    btn2.style.padding = "0px";
+    btn2.id="Temperature";
+    btn2.setAttribute('onclick', "buttonFunction('Vitals',this.id,'W','G');");
+
+
+    td.appendChild(btn);
+    td.appendChild(btn1);
+    td.appendChild(btn2);
+    tr.appendChild(td);
+    innerTable.appendChild(tr);
+    table.appendChild(innerTable);
+    exist[0]="true";
+  }
+  else if(skillValue==2 && exist[1]=="false"){
+    var txt =document.createTextNode("Infusion Pump");
+    innerTable.id="Medication";
+
+    btn.appendChild(txt);
+    btn.id="Inf";
+    btn.setAttribute('onclick', "buttonFunction('Medication',this.id,'W','S')");
+
+    txt=document.createTextNode("Blood Glucose");
+    btn1.appendChild(txt);
+    btn1.style.margin = "0px 5px";
+    btn1.id="Gul";
+    btn1.setAttribute('onclick', "buttonFunction('Medication',this.id,'W','S');");
+
+    td.appendChild(btn);
+    td.appendChild(btn1);
+    tr.appendChild(td);
+    innerTable.appendChild(tr);
+    table.appendChild(innerTable);
+    exist[1]="true";
+  }
+  else if(skillValue==3 && exist[2]=="false"){
+    innerTable.id="Imaging";
+    var txt =document.createTextNode("CT Scan");
+    btn.appendChild(txt);
+    btn.id="Ct";
+    btn.setAttribute('onclick', "buttonFunction('Imaging',this.id,'W','G');");
+
+    txt=document.createTextNode("ECG");
+    btn1.appendChild(txt);
+    btn1.style.margin = "0px 5px";
+    btn1.id="Ecg";
+    btn1.setAttribute('onclick', "buttonFunction('Imaging',this.id,'W','G');");
+
+    td.appendChild(btn);
+    td.appendChild(btn1);
+    tr.appendChild(td);
+    innerTable.appendChild(tr);
+    table.appendChild(innerTable);
+    exist[2]="true";
+  }
+  else if(skillValue==4 && exist[3]=="false"){
+    innerTable.id="EHR";
+    var txt =document.createTextNode("Last Chart");
+    btn.appendChild(txt);
+    btn.id="lastChart";
+    btn.setAttribute('onclick', "buttonFunction('EHR',this.id,'W','G');");
+
+    txt=document.createTextNode("Save Chart");
+    btn1.appendChild(txt);
+    btn1.style.margin = "0px 5px";
+    btn1.id="saveChart";
+    btn1.setAttribute('onclick', "buttonFunction('EHR',this.id,'W','G');");
+
+    td.appendChild(btn);
+    td.appendChild(btn1);
+    tr.appendChild(td);
+    innerTable.appendChild(tr);
+    table.appendChild(innerTable);
+    exist[3] = "true";
+  }
+  else{
+
+  }
+}
+
+ var contentArray = [];
+ var contentResponse = [];
+ var contentSetArray =[];
+
+
+async function buttonFunction(servant, skill, activityType, getSet){
+   var planPOS =0;
+  if(getSet =='G'){
+
+        contentArray[contentArray.length] = {activityTable: servant, activityName: skill, color1: "Yellow", col3:"true", state: "WAIT"};
+      for(i=0;i<=contentArray.length-1;i++){
+        var row = contentArray[i];
+        if(row.state == "DONE")
+        continue;
+        else {
+          planPOS = i;
+        }
+        screenContent(1,planPOS);
+
+        row.state = "DONE";
+
+      }
+
+  }
+  else if(getSet == 'S'){
+    contentSetArray[contentSetArray.length] ={activityTable: servant, activityName: skill, color1: "Yellow", col3:"true", state: "WAIT"};
+
+    screenContent(3,0);
+  }
+
+}
+async function screenContent(side,planposition){
+
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
+//  td.style.border="1px solid black";
+
+  if(side == 1){
+  var table = document.getElementById(contentArray[planposition].activityTable);
+
+  var txt = document.createTextNode(contentArray[planposition].activityName);
+  td.style.textAlign = "right";
+  td.appendChild(txt);
+
+  tr.appendChild(td);
+  table.appendChild(tr);
+
+  if(contentArray[planposition].activityName == "HrtRt"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'HrtRt: 90bpm' };
+  }
+  else if(contentArray[planposition].activityName == "BloodPressure"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'BP: 120/80' };
+  }
+  else if(contentArray[planposition].activityName == "Temperature"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'Temp: 98.3º F/ 36.8º C' };
+  }
+
+  else if(contentArray[planposition].activityName == "Ct"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'CT taken' };
+  }
+  else if(contentArray[planposition].activityName == "Ecg"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'Ecg Taken' };
+  }
+  else if(contentArray[planposition].activityName == "saveChart"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'saved' };
+  }
+  else if(contentArray[planposition].activityName == "lastChart"){
+    contentResponse[contentResponse.length] = {activityTable: contentArray[planposition].activityTable ,activityName: 'last Chart' };
+  }
+  else {
+
+  }
+
+  await sleep(3000);
+  screenContent(2, planposition);
+
+  }
+  else if(side==2){
+    var table = document.getElementById(contentResponse[planposition].activityTable);
+    var txt= document.createTextNode(contentResponse[planposition].activityName);
+    td.appendChild(txt);
+    tr.appendChild(td);
+    table.appendChild(tr);
+
+  }
+  else if(side==3){
+    var table = document.getElementById(contentSetArray[contentSetArray.length-1].activityTable);
+    var td1=document.createElement("td");
+    var tr1=document.createElement("tr");
+    var txt =document.createTextNode(contentSetArray[contentSetArray.length-1].activityName);
+
+    td1.style.textAlign ="right";
+    td1.appendChild(txt);
+    tr1.appendChild(td1);
+    table.appendChild(tr1);
+    await sleep(400);
+    var setValueBox = document.createElement("input");
+    setValueBox.type = "number";
+    setValueBox.id= contentSetArray[contentSetArray.length-1].activityName + contentSetArray.length;
+    var btn=document.createElement("input");
+    btn.type="button";
+    btn.name=setValueBox.id;
+    btn.class = contentSetArray[contentSetArray.length-1].activityTable;
+    btn.id= contentSetArray[contentSetArray.length-1].activityName;
+    btn.setAttribute('onclick',"screenForSetReply(this.id, this.class,this.name);");
+
+    btn.value="set " + contentSetArray[contentSetArray.length-1].activityName;
+    td.appendChild(setValueBox);
+
+    td.appendChild(btn);
+    tr.appendChild(td);
+    table.appendChild(tr);
+  }
+
+}
+function screenForSetReply(btnid, tableid, txtid){
+  var table = document.getElementById(tableid);
+  var txt;
+
+  if(btnid =="Gul"){
+     txt = "Gul set as " +document.getElementById(txtid).value ;
+
+  }
+  else if(btnid=="Inf"){
+     txt ="Inf set as "+document.getElementById(txtid).value;
+  }
+  var txt1 =document.createTextNode(txt);
+  var td=document.createElement("td");
+  var tr=document.createElement("tr");
+  td.appendChild(txt1);
+  tr.appendChild(td);
+  table.appendChild(tr);
+  document.getElementById(txtid).value = "";
+}
+function sleep(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));
+}
+</script>
+</head>
+<body onload="onLoad()">
+	<div id="console"></div>
+	<table style="width:100%; height:600px;">
+		<tr>
+			<td width="33%">
+
+				  <table id="doc1Table" class="main" style="width:300px; height:600px;"  >
+				    <tr valign="top">
+				      	<td >
+				      		<div id="doc1TopDiv" style="margin:40px 0px 10px 0px;">
+				      		&nbsp <div id="doc1patientName"></div> <br/>
+				      		<img src="line.png" alt="" width="95%" /><br />
+				        	&nbsp Select Servant<br/><br>
+				        	&nbsp
+				        	<div id="servantList1"></div>
+				        	<!--
+				        	<button type="button" value="Vitals" onclick="showSkill(1)">Vitals</button>
+				        	<button type="button" value="Medication" onclick="showSkill(2)">Medication</button>
+				        	<button type="button" value="Imaging" onclick="showSkill(3)">Imaging</button>
+				        	<button type="button" value="EHR" onclick="showSkill(4)">EHR</button>
+				        	 -->
+
+				      		</div>
+				      		<img src="line.png" alt="" width="95%"/>
+				      		<table id="chatDisplay1">
+
+				      		</table>
+				    	</td>
+				    </tr>
+				  </table>
+			</td>
+			<td width="33%">
+				<table id="erRoomTable" style="width:100%; height:100%;">
+					<tr height="100px">
+						<td></td>
+						<td align="center"><button onclick="swapDoctors()">SWAP DOCTOR</button></td>
+						<td></td>
+					</tr>
+					<tr height="30%" style="background-image: url(room.png); background-size: 413px 200px;">
+						<td width="33%" id="doc1pos1"><img src="doctor1.png" alt="Doctor1" style="width:70px;height:70px;"></td>
+						<td width="33%">
+							<table style="width:100%; height:100%;">
+								<tr height="33%"><td></td><td><div align="center">Room 1- Gray</div></td><td></td></tr>
+								<tr height="33%"><td></td><td><img src="bed.png"/></td><td></td></tr>
+								<tr height="33%" align="center"><td>Servent1</td><td id="addserventspace1">Servent2</td><td><button onclick="addServent(1)">Add</button></td></tr>
+							</table>
+						</td>
+						<td width="33%" id="doc2pos2"></td>
+					</tr>
+					<tr height="30">
+					<td colspan="3"><img src="line.png" alt="" width="100%" />
+					</tr>
+					<tr height="30%" style="background-image: url(room.png); background-size: 413px 200px;">
+						<td width="33%" id="doc1pos2"></td>
+						<td width="33%">
+							<table style="width:100%; height:100%;">
+								<tr><td></td><td><div align="center">Room2 - Alan</div></td><td></td></tr>
+								<tr><td></td><td><img src="bed.png"/></td><td></td></tr>
+								<tr height="33%" align="center"><td>Servent3</td><td id="addserventspace2"></td><td><button onclick="addServent(2)">Add</button></td></tr>
+							</table>
+
+						</td>
+						<td width="33%" id="doc2pos1"><img src="doctor2.png" alt="Doctor2" style="width:70px;height:70px;"></td>
+					</tr>
+					<tr height="100px">
+					</tr>
+				</table>
+			</td>
+			<td width="33%" align="right">
+				  <table id="doc2Table" class="main" style="width:300px; height:600px;"  >
+				    <tr valign="top">
+				      	<td >
+				      		<div id="doc2TopDiv" style="margin:40px 0px 10px 0px;">
+				      		<div id="doc2patientName"></div> <br/>
+				      		<img src="line.png" alt="" width="95%" /><br />
+				        	&nbsp Select Servant<br/><br>
+				        	&nbsp
+				        	<div id="servantList2"></div>
+				        	<!--
+				        	<button type="button" value="Vitals" onclick="showSkill(1)">Vitals</button>
+				        	<button type="button" value="Medication" onclick="showSkill(2)">Medication</button>
+				        	<button type="button" value="Imaging" onclick="showSkill(3)">Imaging</button>
+				        	<button type="button" value="EHR" onclick="showSkill(4)">EHR</button>
+				        	 -->
+
+				      		</div>
+				      		<img src="line.png" alt="" width="95%"/>
+				      		<table id="chatDisplay2">
+
+				      		</table>
+				    	</td>
+				    </tr>
+				  </table>
+
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
